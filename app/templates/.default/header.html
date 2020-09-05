@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=9" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/app/templates/.default/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/app/templates/.default/css/sweet-alert.css">
+    <link rel="stylesheet" href="/app/templates/.default/css/main.css">
+
+    <script type="text/javascript" src="/app/templates/.default/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/app/templates/.default/js/sweet-alert.min.js"></script>
+    <script type="text/javascript" src="/app/templates/.default/js/scripts.js"></script>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="top-menu">
+                            <li><a href="/" class="logo"><img src="/app/templates/.default/img/logo.png"></a></li>
+                        </ul>
+                    </div>
+                    {% if '/personal/' not in page %}
+                        <div class="col-sm-6 action-icons">
+                            <div class="cart">
+                                <a href="/personal/basket/"></a>
+                                <span class="badge">{{ (basket.items|length != 0) ? basket.items|length : '' }}</span>
+                                <div class="cart-header-wrapper">     
+                                    {% include '/templates/basket/header_cart.html' %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %} 
+                </div>
+            </div>
+        </div>
+    </header>

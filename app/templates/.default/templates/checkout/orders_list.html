@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="cart-row row">
+        <div class="col-sm-1">№</div>
+        <div class="col-sm-3">Items</div>
+        <div class="col-sm-3">User</div>
+        <div class="col-sm-2">Date</div>
+        <div class="col-sm-3">Price</div>
+    </div>                
+    {% for order in orders %}
+        <div class="cart-row row">
+            <div class="col-sm-1">{{ order.ID }}</div>
+            <div class="col-sm-3">
+                {% for item in order.BASKET %}
+                    <p>{{ item['#render']|raw }}</p>
+                {% endfor %}
+            </div>
+            <div class="col-sm-3">                
+                {% for key,item in order.USER %}
+                    <p>{{ key }}: {{ item }}</p>
+                {% endfor %}
+            </div>
+            <div class="col-sm-2">{{ order.DATE }}</div>
+            <div class="col-sm-3">{{ order.PRICE['#render']|raw }}</div>
+        </div>
+    {% endfor %}
+</div>

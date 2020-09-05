@@ -1,0 +1,6 @@
+{
+    "require": {
+        "php-activerecord/php-activerecord": "^1.2",
+        "twig/twig": "^1.42"
+    }
+}

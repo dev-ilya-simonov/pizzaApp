@@ -1,0 +1,24 @@
+<div class="cart-items">
+        <div class="cart-row">
+            <div class="col-sm-2 pic"></div>
+            <div class="col-sm-4 title">Name</div>
+            <div class="col-sm-2 cnt">Count</div>
+            <div class="col-sm-2 price">Price</div>
+            <div class="col-sm-2"></div>
+        </div>                
+        {% for item in basket.items %}
+            <div class="cart-row" data-action="deleteFromCart">
+                <div class="col-sm-2 pic" style="background-image:url({{ item.pic }})"></div>
+                <div class="col-sm-4 title">{{ item.title }}</div>
+                <div class="col-sm-2 cnt">{{ item.cnt }}</div>
+                <div class="col-sm-2 price">{{ item.price|raw }}</div>
+                <a href="#" class="col-sm-2 delete" data-tmp="basket_page" data-ajax data-entity="cart" data-action="delete" data-id="{{ item.id }}">x</a>
+            </div>
+        {% endfor %}
+    </div>             
+    <div class="cart-total">
+        <p>Order price: {{ basket.sub_total['#formatted']|raw }}</p>
+        <p>Delivery price: {{ basket.checked_delivery.price['#formatted']|raw }}</p>
+    </div>
+    {% include '/templates/checkout/checkout_form.html' %}
+</div>

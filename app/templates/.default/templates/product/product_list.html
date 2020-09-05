@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-4 product-item">
+                <div class="product-picture" style="background-image:url({{ product.picture }})"></div>
+                <p>{{ product.title }}</p>
+                <div class="row order-row">
+                    <div class="col-6">
+                        <p>Price: <span>{{ product.price }}</span> $</p>
+                    </div>
+                    <div class="col-6">
+                        <a href="#" data-ajax data-entity="cart" data-action="add" data-id="{{ product.id }}" class="add-to-cart"></a>
+                    </div>
+                </div>
+                <div class="description">Ingredient: {{ product.description }}</div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

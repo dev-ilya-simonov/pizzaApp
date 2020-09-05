@@ -1,0 +1,34 @@
+<form id="createOrder" action="createOrder" data-ajax-form class="col-md-8">  
+    <div class="form-group">
+        <h3>Client data</h3>
+    </div>
+    <div class="form-group">
+        <input type="text" required name="first_name" placeholder="Name" value="{{ (basket.user is defined) ? basket.user.first_name }}" />
+        <input type="text" required name="last_name" placeholder="Sername" value="{{ (basket.user is defined) ? basket.user.last_name }}" />
+    </div>
+    <div class="form-group">
+        <input type="text" required name="phone" placeholder="Phone" value="{{ (basket.user is defined) ? basket.user.phone }}" />
+        <input type="text" required name="address" placeholder="Address" value="{{ (basket.user is defined) ? basket.user.address }}" />
+    </div>
+    <div class="form-group deliveries">
+        <h3>Choose delivery</h3>
+        {% for delivery in basket.deliveries %}
+            <div class="form-check">
+                <input type="radio" {{ (basket.checked_delivery.id == delivery.id) ? 'checked' : '' }} required data-price="{{ delivery.price.value }}" id="delivery-{{ delivery.id }}" name="delivery" value="{{ delivery.id }}">
+                <label for="delivery-{{ delivery.id }}" alt="{{ delivery.description }}" title="{{ delivery.description }}">{{ delivery.title }} - {{ delivery.price['#formatted']|raw }}</label>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        <textarea name="description" placeholder="Comment...">{{ (basket.user is defined) ? basket.user.description }}</textarea>    
+    </div>
+    <div class="cart-total">
+        <p>Total order price: {{ basket.total['#formatted']|raw }}</p>
+    </div>
+
+    <input type="hidden" name="bid" value="{{ basket.id }}">
+    <input type="hidden" name="total_price" value="{{ basket.total.value }}">
+    <div class="cart-total">
+        <input type="submit" value="Send order to kitchen"/>
+    </div>
+</form>

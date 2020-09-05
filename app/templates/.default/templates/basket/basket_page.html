@@ -1,0 +1,28 @@
+{% if basket.items|length > 0  %}  
+    <form id="checkoutForm" action="createBasket" data-ajax-form>  
+        <div class="cart-items">
+            <div class="cart-row">
+                <div class="col-sm-2 pic"></div>
+                <div class="col-sm-4 title">Pizza</div>
+                <div class="col-sm-2 cnt">Count</div>
+                <div class="col-sm-2 price">Price</div>
+                <div class="col-sm-2"></div>
+            </div>                
+            {% for item in basket.items %}
+                <div class="cart-row" data-action="deleteFromCart">
+                    <div class="col-sm-2 pic" style="background-image:url({{ item.pic }})"></div>
+                    <div class="col-sm-4 title">{{ item.title }}</div>
+                    <div class="col-sm-2 cnt"><input data-tmp="basket_page" data-ajax-input data-entity="cart" data-action="update" data-id="{{ item.id }}" data-default-val="{{ item.cnt }}" class="cnt-field" min="1" type="number" value="{{ item.cnt }}"></div>
+                    <div class="col-sm-2 price">{{ item.price }} $</div>
+                    <a href="#" class="col-sm-2 delete" data-tmp="basket_page" data-ajax data-entity="cart" data-action="delete" data-id="{{ item.id }}">x</a>
+                </div>
+            {% endfor %}
+        </div>             
+        <div class="cart-total">
+            <p>Итого: {{ basket.total }} $</p>
+            <input type="submit" value="Create order"/>
+        </div>
+    </form>
+{% else %}
+    <p>Your pizza is waiting you!</p>
+{% endif %}

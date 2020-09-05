@@ -1,0 +1,25 @@
+{% if basket.items|length > 0  %}    
+    <div class="cart-header-items">
+        <div class="header-cart-row">
+            <div class="pic"></div>
+            <div class="title">Pizza</div>
+            <div class="cnt">Count</div>
+            <div class="price">Price</div>
+        </div>                
+        {% for item in basket.items %}
+            <div class="header-cart-row" data-action="deleteFromCart">
+                <div class="pic" style="background-image:url({{ item.pic }})"></div>
+                <div class="title">{{ item.title }}</div>
+                <div class="cnt"><input data-ajax-input data-entity="cart" data-action="update" data-id="{{ item.id }}" data-default-val="{{ item.cnt }}" class="cnt-field" min="1" type="number" value="{{ item.cnt }}"></div>
+                <div class="price">{{ item.price }} $</div>
+                <a href="#" class="delete" data-ajax data-entity="cart" data-action="delete" data-id="{{ item.id }}">x</a>
+            </div>
+        {% endfor %}
+    </div>             
+    <div class="cart-header-total">
+        <p>Total: {{ basket.total }} $</p>
+        <a href="/personal/basket/">Go to basket</a>
+    </div>
+{% else %}
+    <p>Your pizza is waiting you!</p>
+{% endif %}
