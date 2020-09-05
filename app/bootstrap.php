@@ -15,5 +15,6 @@ $genConnStr = sprintf(
 ActiveRecord\Config::initialize(function($cfg) {
      $cfg->set_model_directory($_SERVER['DOCUMENT_ROOT'].'/app/core');
      $cfg->set_connections(array(
-        'development' => 'mysql://godzila_pizza:%&7t0Y0*@localhost/godzila_pizza'));
+        //'development' => 'mysql://godzila_pizza:%&7t0Y0*@localhost/godzila_pizza'));
+        'development' => 'mysql://LpSIebGnt3:tQUZjjHSZY@remotemysql.com/LpSIebGnt3'));
 });
