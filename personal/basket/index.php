@@ -5,8 +5,8 @@ $basket = new Basket;
 
 <section class="content">
     <div class="container">
-        <h1>Корзина</h1>
-        <a href="/">&larr; Назад к покупкам</a>
+        <h1>Basket</h1>
+        <a href="/">&larr; Back to pizzas</a>
         <div class="cart-page-wrapper">
             <?=General::renderTemplate('/templates/basket/basket_page.html',['basket'=>$basket->getTemp()])?>
         </div>
